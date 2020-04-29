@@ -22,6 +22,9 @@ default="/ahg/regevdata/projects/Cell2CellCommunication/baf_perturbseq/results/2
 p=add_argument(p, "--subsetfilelist", help="", type="character",
 default="/ahg/regevdata/projects/Cell2CellCommunication/baf_perturbseq/results/2020-03-26/results/2020-04-06_NMF_genes/nmf_filelist.txt")
 
+p=add_argument(p, "--direction", help="can be enrichment of depletion", type="character",
+default="enrichment")
+
 # Parse the command line arguments
 args=parse_args(p)
 
@@ -66,7 +69,7 @@ print(regionSet_here)
 require(GenomicRanges)
 universeSets = GRangesList(regionSet)
 userSets=GRangesList(regionSet_here)
-locResults = runLOLA(userSets, regionSet,regionDB,cores=1)
+locResults = runLOLA(userSets, regionSet,regionDB,cores=1,direction=args.direction)
 
 locResults=as.data.frame(locResults)
 rownames(locResults)=locResults[,'filename']
