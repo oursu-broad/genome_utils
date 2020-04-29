@@ -69,7 +69,7 @@ print(regionSet_here)
 require(GenomicRanges)
 universeSets = GRangesList(regionSet)
 userSets=GRangesList(regionSet_here)
-locResults = runLOLA(userSets, regionSet,regionDB,cores=1,direction=args.direction)
+locResults = runLOLA(userSets, regionSet,regionDB,cores=1,direction=args$direction)
 
 locResults=as.data.frame(locResults)
 rownames(locResults)=locResults[,'filename']
